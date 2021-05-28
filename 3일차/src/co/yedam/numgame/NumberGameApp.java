@@ -1,5 +1,10 @@
 package co.yedam.numgame;
 
+/*
+ * 숫자 맞추기 게임
+ * 작성자 : 윤지민
+ */
+
 import java.util.Scanner;
 
 public class NumberGameApp {
@@ -37,6 +42,7 @@ public class NumberGameApp {
 		while(true) {
 			input();
 			if(confirm() == true ) {
+				System.out.println("짝짝짝~~~~맞았습니다^0^~~~~");
 				break;
 			}
 			else if (confirm() == false) {
