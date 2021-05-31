@@ -7,10 +7,9 @@ package co.yedam.numgame;
 
 import java.util.Scanner;
 
-public class NumberGameApp {
+public class NumberGameApp2 {
 	int comNum; //컴퓨터가 만든 수
 	int userNum;  //사용자가 입력한 값	
-	Scanner scanner = new Scanner(System.in);
 	
 	// 컴퓨터 수 함수
 	void init() {
@@ -19,7 +18,7 @@ public class NumberGameApp {
 
 	//사용자 입력 함수
 	void input() {
-	
+	Scanner scanner = new Scanner(System.in);
 	System.out.print("숫자를 입력하세요.(1~6) >> ");
 	userNum = scanner.nextInt();
 	}
@@ -44,38 +43,14 @@ public class NumberGameApp {
 	 * n -> 다시 게임 시작
 	 */
 	
-	boolean yesno () {
-		String answer;
-		System.out.println("게임을 다시 시작할까요?(y/n)");
-		answer = scanner.next();
-		if (answer == "y" || answer == "Y") {
-			return true;
-		}
-		else {
-			System.out.println("게임을 종료합니다.");
-			return false;
-		}
-	}
-	
 	void start() {
 		
-		String insert;
-		boolean bool = true;
+		init(); // 컴퓨터의 랜덤 숫자 생성
 		
-		init(); //컴퓨터 임의의 숫자 생성
-	
 		while(true) {
-			input(); // 숫자를 입력하세요. 
+			input();
 			
-			if (confirm() == false) {             //숫자가 틀리면
-				System.out.println("틀렸습니다.");
-					}
-			
-			if(confirm() == true ) {            //숫자가 맞으면
-				System.out.println("짝짝짝~~~~맞았습니다^0^~~~~");
-				break;
-			}
-			}
+		}
 		
 		} // start() 괄호 닫기
 				
