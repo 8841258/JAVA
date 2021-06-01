@@ -1,4 +1,4 @@
-package co.yedam.app.bookrent.complete;
+package Homework;
 
 public class Book {
 	private String title;
