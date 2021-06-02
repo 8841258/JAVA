@@ -20,20 +20,25 @@ public class FriendList implements FriendAccess {
 	}
 
 	@Override
-	public void update(Friend friend) {
-		// TODO Auto-generated method stub
-		
+	public void update(int idx, Friend friend) {
+		friends.set(idx, friend);
 	}
+		
+	
 
 	@Override
-	public void delete(String name) {
-		// TODO Auto-generated method stub
+	public void delete(int idx) {
+			friends.remove(idx);
+			
+		}
 		
-	}
+		
 
 	@Override
 	public void selectAll() {
-		System.out.println("FriendList 클래스입니다.");
+		for (Friend f : friends) {
+			System.out.println(f);
+		}
 	}
 
 	@Override
