@@ -3,7 +3,7 @@ package co.yedam.emp;
 public class Employee {
 	int num;
 	String name;
-	int salary;
+	int salary;  
 	
 	Employee(int num, String name, int salary) {
 		this.num = num;
