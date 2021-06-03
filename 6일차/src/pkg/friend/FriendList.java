@@ -27,9 +27,12 @@ public class FriendList implements FriendAccess {
 	
 
 	@Override
-	public void delete(int idx) {
-			friends.remove(idx);
-			
+	public void delete(String name) {
+		for (Friend f : friends) {
+			if (f.getName().equals(name)) {   
+			friends.remove(f);
+			}
+		}
 		}
 		
 		

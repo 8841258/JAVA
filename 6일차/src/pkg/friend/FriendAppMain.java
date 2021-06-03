@@ -62,9 +62,9 @@ public class FriendAppMain {
 				
 			} else if (selectNo == 3) {
 				
-				System.out.print("삭제할 목록 번호 입력 >> ");
-				int deleteIdx = scanner.nextInt();
-				list.delete(deleteIdx);
+				System.out.print("삭제할 이름을 입력 >> ");
+				String deleteName = scanner.next();
+				list.delete(deleteName);
 				
 			} else if (selectNo == 4) {
 				

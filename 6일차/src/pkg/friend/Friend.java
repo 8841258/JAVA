@@ -47,6 +47,7 @@ public class Friend {
 	public String toString() {
 		return "Friend [gubun=" + gubun + ", name=" + name + ", tel=" + tel + "]";
 	}
+
 	
 	
 	

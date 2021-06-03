@@ -14,7 +14,7 @@ public interface FriendAccess {
 	
 	
 	//삭제
-	public void delete(int idx);
+	public void delete(String name);
 	
 	
 	//전체조회

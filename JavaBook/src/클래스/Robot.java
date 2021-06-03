@@ -56,8 +56,21 @@ public class Robot {
 	//일반 메서드
 	
 
+	@Override
+	public boolean equals(Object obj) {
+		Robot r2 = ((Robot)obj);
+		return r2.arm == this.arm && r2.leg == this.leg;
+		
+	}
+
 	void print() {
 		System.out.printf("arm : %d, leg : %d", arm, leg);
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "팔은 " + this.arm + "개, 다리는 " + this.leg + "개";
 	}
 	
 	
