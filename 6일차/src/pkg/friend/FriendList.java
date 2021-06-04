@@ -31,6 +31,7 @@ public class FriendList implements FriendAccess {
 		for (Friend f : friends) {
 			if (f.getName().equals(name)) {   
 			friends.remove(f);
+			break;
 			}
 		}
 		}
