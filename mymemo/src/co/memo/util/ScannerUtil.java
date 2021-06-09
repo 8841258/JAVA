@@ -76,9 +76,9 @@ public class ScannerUtil {
 	
 	public static Memo readMemo() {
 		System.out.print("날짜 >> ");
-		String date = scanner.next();
+		String date = scanner.next(); scanner.nextLine();
 		System.out.print("메모 >> ");
-		String content = scanner.next();
+		String content = scanner.nextLine();
 		Memo memo = new Memo(date, content);
 		return memo;
 		

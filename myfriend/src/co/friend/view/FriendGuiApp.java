@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import co.friend.access.FriendAccess;
+import co.friend.access.FriendDAO;
 import co.friend.access.FriendList;
 import co.friend.model.Friend;
 
@@ -21,7 +23,7 @@ public class FriendGuiApp extends JFrame {
 	TextField txtName, txtGubun, txtTel;
 	JButton btnInsert, btnUpdate, btnDelete, btnSelectAll, btnFindName;
 	TextArea txtList;
-	FriendList friendList = new FriendList();
+	FriendAccess friendList = new FriendDAO();
 	
 	public FriendGuiApp(){
 		setTitle("친구관리");
@@ -58,16 +60,19 @@ public class FriendGuiApp extends JFrame {
 		
 		this.getContentPane().add(txtList);
 		
-		btnInsert.addActionListener(new ClickHandler());
-		btnUpdate.addActionListener(new UpdateHandler());
-		btnDelete.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				delete();
-				
-			}});
+		//삽입
+		btnInsert.addActionListener(e -> insert());
+		
+		//수정
+		btnUpdate.addActionListener(e -> update());
+		
+		//삭제
+		btnDelete.addActionListener(e -> delete());
+		
+		//전체조회
 		btnSelectAll.addActionListener(e -> selectAll());
+		
+		//이름조회
 		btnFindName.addActionListener(e -> findName());
 	}
 
@@ -75,12 +80,10 @@ public class FriendGuiApp extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			update();
+
 		}
 	}
-	
-	
-	
-	
+
 	class ClickHandler implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -88,6 +91,33 @@ public class FriendGuiApp extends JFrame {
 			txtName.setText("Click test");
 		}
 	}
+	
+	class selectAllHandler implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			selectAll();
+			txtList.setText("hello");
+		}
+	}
+	
+	class findNameHandler implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			findName();
+			
+		}
+	}
+	
+	class deleteHandler implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			delete();
+			
+				
+			}
+	}
+	
+	
 	
 	
 	
@@ -111,13 +141,13 @@ public class FriendGuiApp extends JFrame {
 
 	// 삭제
 	public void delete() {
-		String name = txtTel.getText();
+		String name = txtName.getText();
 		friendList.delete(name);
 	}
 
 	// 이름검색
 	public void findName() {
-		String name = txtTel.getText();
+		String name = txtName.getText();
 		Friend friend = friendList.selectOne(name);
 		txtGubun.setText(friend.getGubun());
 		txtTel.setText(friend.getTel());
@@ -130,7 +160,8 @@ public class FriendGuiApp extends JFrame {
 		StringBuffer sb = new StringBuffer();
 		for(Friend friend : list) {
 			sb.append(friend);
-			sb.append("\n");
+			sb.append("\n"); 
+			System.out.println(sb.toString());
 		}
 		txtList.setText(sb.toString());
 	}

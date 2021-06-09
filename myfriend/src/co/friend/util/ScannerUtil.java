@@ -71,7 +71,7 @@ public class ScannerUtil {
 	}
 	
 	public static Friend readFriend() {
-		System.out.println("구분, 이름, 전화번호를 입력하세요. >> ");
+		System.out.println("구분,이름,전화번호를 입력하세요. >> ");
 		String result = scanner.next();
 		String[] arr = result.split(",");
 		Friend friend = new Friend(arr[0], arr[1], arr[2]);

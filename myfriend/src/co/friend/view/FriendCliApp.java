@@ -2,13 +2,14 @@ package co.friend.view;
 
 import java.util.List;
 
-import co.friend.access.FriendList;
+import co.friend.access.FriendAccess;
+import co.friend.access.FriendDAO;
 import co.friend.model.Friend;
 import co.friend.util.ScannerUtil;
 
 public class FriendCliApp {
 	
-	FriendList friendList = new FriendList();
+	FriendAccess friendList = new FriendDAO();
 	
 	public void start() {
 		int menunum;
@@ -27,10 +28,11 @@ public class FriendCliApp {
 	}
 	
 	private void findName() {
+		System.out.println("검색할 이름을 입력하세요.");
 		String name = ScannerUtil.readStr();
 		Friend friend = friendList.selectOne(name);
 		System.out.println(friend);
-		
+
 	}
 
 	private void selectAll() {
@@ -49,7 +51,9 @@ public class FriendCliApp {
 	
 	private void update() {
 		Friend friend = new Friend();
+		System.out.println("수정할 친구의 이름을 입력하세요.");
 		friend.setName(ScannerUtil.readStr());
+		System.out.println("친구의 새 전화번호를 입력하세요.");
 		friend.setTel(ScannerUtil.readStr());
 		friendList.update(friend);
 	}
@@ -61,8 +65,9 @@ public class FriendCliApp {
 	}
 	
 	private void findTel() {
-		String name = ScannerUtil.readStr();
-		Friend friend = friendList.findTel(name);
+		System.out.println("검색할 전화번호를 입력하세요.");
+		String tel = ScannerUtil.readStr();
+		Friend friend = friendList.findTel(tel);
 		System.out.println(friend);
 	}
 

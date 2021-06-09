@@ -7,8 +7,13 @@ public class AppMain {
 
 	public static void main(String[] args) {
 
-		new FriendGuiApp();
-
+//		FriendCliApp app = new FriendCliApp();
+//		app.start()
+		
+		FriendGuiApp app = new FriendGuiApp();
+//		app.init();
+		
+		;
 	}
 
 }
