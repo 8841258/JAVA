@@ -76,11 +76,8 @@ public class ScannerUtil {
 		
 	}
 	
-	public static Memo readMemo() {
+	public static String readMemo() {
 		String content=null;
-		System.out.print("날짜 >> ");
-		String date = scanner.next();
-		System.out.println("메모사항을 입력하세요. >>");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			content = br.readLine();
@@ -88,8 +85,8 @@ public class ScannerUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Memo memo = new Memo(date, content);
-		return memo;
+
+		return content;
 		
 	}
 

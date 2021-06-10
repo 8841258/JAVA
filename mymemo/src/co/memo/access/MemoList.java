@@ -89,11 +89,11 @@ public class MemoList implements MemoAccess {
 	}
 
 	@Override
-	public Memo selectDate(String Date) {
+	public ArrayList<Memo> selectDate(String Date) {
 		for (Memo f : memos) {
 			if (f.getDate().equals(Date)) {   
 				//equal은 완전 일치. contains는 포함. startWith ~로 시작하는 endWith ~로 끝나는
-				return f;
+				return null;
 			}
 		}
 		return null;
@@ -103,11 +103,11 @@ public class MemoList implements MemoAccess {
 	}
 
 	@Override
-	public Memo selectContent(String Content) {
+	public ArrayList<Memo> selectContent(String Content) {
 		for (Memo f : memos) {
 			if (f.getContent().contains(Content)) {   
 				//equal은 완전 일치. contains는 포함. startWith ~로 시작하는 endWith ~로 끝나는
-				return f;
+				return null;
 			}
 		}
 		return null;

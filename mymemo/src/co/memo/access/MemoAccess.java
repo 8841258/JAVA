@@ -15,9 +15,9 @@ public interface MemoAccess {
 	
 	public ArrayList<Memo> selectAll();
 	
-	public Memo selectDate(String Date);
+	public ArrayList<Memo> selectDate(String Date);
 	
-	public Memo selectContent(String Content);
+	public ArrayList<Memo> selectContent(String Content);
 	
 	
 }

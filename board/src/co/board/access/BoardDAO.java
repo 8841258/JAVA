@@ -61,13 +61,14 @@ public class BoardDAO implements BoardAccess {
 		ArrayList<Board> array = new ArrayList<>();
 		connect();
 		
-		sql = "select * from board";
+		sql = "select * from board where b_parent_id is null";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			
 			while (rs.next()) {
+				
 				Board b = new Board();
 				b.setId(rs.getInt("b_id"));
 				b.setTitle(rs.getString("b_title"));
@@ -93,6 +94,7 @@ public class BoardDAO implements BoardAccess {
 	
 	@Override
 	public void insert(Board board) {
+		connect();
 		sql = "insert into board (b_title, b_content, b_writer) values(?, ?, ?)";
 		
 		try {
@@ -124,13 +126,7 @@ public class BoardDAO implements BoardAccess {
 		sql = "update board set b_title=?, b_writer=?, b_content=? where b_id=?";
 		
 		try {
-			//입력한 id가 데이터베이스 id 목록에 없으면
-			
-				
-			//없는 번호입니다. 출력
-			
-			
-			
+
 			psmt = conn.prepareStatement(sql);
 			
 			psmt.setString(1, board.getTitle());
@@ -149,12 +145,34 @@ public class BoardDAO implements BoardAccess {
 		} finally {
 			close();
 		}
-		
-		
-		
-		
-		
+
 	}
+	
+	
+	//수정할 때, 입력할 글 번호가 데이터베이스에 없으면 없는 번호라고 BoardApp에 표시하기 위해
+	//글 번호가 있으면 true, 없으면 false를 호출하는 메소드
+	public boolean checkId(int num) {
+		connect();
+		sql = "select * from board where b_id=?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, num);
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+	
+	
+	
 
 	
 	@Override
@@ -163,26 +181,23 @@ public class BoardDAO implements BoardAccess {
 		
 		sql = "delete from board where b_id=?";
 		
+		
 		try {
 			psmt = conn.prepareStatement(sql);
-			
-			
 			
 			//?에 조건 주기
 			psmt.setInt(1, id);
 			
 			int r = psmt.executeUpdate();
 			
-			System.out.println(r + "건 수정 완료.");
+			System.out.println(r + "건 삭제 완료.");
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		
-		
-		
 		
 	}
 
@@ -195,22 +210,11 @@ public class BoardDAO implements BoardAccess {
 		try {
 			psmt = conn.prepareStatement(sql);
 			
-			ArrayList <Board> board = selectList();
-			for ( Board boa : board) {
-				if (boa.getId() != id) {
-					
-				}
-			}
-			
-			
 			psmt.setInt(1, id);
 			rs = psmt.executeQuery();
-			
-			
-			b = new Board();
-			
 
-			
+			b = new Board();
+
 			b.setId(id);
 			b.setTitle(rs.getString("b_title"));
 			b.setWriter(rs.getString("b_writer"));
@@ -249,11 +253,82 @@ public class BoardDAO implements BoardAccess {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+	}
+	
+	
+	
+	public void selectComment(int num) {
+		ArrayList<Board> array = new ArrayList<>();
+		connect();
 		
+		sql = "select * from board where b_parent_id = ?";
 		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, num);
+			
+			rs = psmt.executeQuery();
+			
+			if (rs.next() == false) {
+				System.err.println("없는 번호입니다.");
+				System.out.println(); // 줄바꿈
+			}
+			else {
+			while (rs.next()) {
+				
+				Board b = new Board();
+				b.setId(num);
+				b.setTitle(rs.getString("b_title"));
+				b.setWriter(rs.getString("b_writer"));
+				b.setContent(rs.getString("b_content"));
+				array.add(b);
+			}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 		
+		for (Board b : array) {
+			System.out.println("글 번호 : " + b.getId() + " | 댓글 내용 : " + b.getContent());
+		}
 		
 	}
+	
+	
+	//글이 삭제되면 코멘트도 같이 삭제되는 기능 넣으려다 실패
+//	public void deleteComment(int num) {
+//		
+//		sql = "select * from board where b_parent_id = ?";
+//		String sql2 = "delete from board where b_parent_id=?";
+//		
+//
+//		
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setInt(1, num);
+//			
+//			rs = psmt.executeQuery();
+//			
+//
+//				if (rs.next()) {
+//					PreparedStatement psmt2 = conn.prepareStatement(sql2);
+//					psmt2.setInt(1, num);
+//					int rr = psmt.executeUpdate();
+//					System.out.println("게시글에 달린 " + rr + "건의 댓글도 삭제 완료.");
+//				
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//		
+//	}
+	
 	
 	
 	

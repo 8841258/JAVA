@@ -1,5 +1,6 @@
 package co.memo.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.memo.access.MemoDAO;
@@ -28,20 +29,27 @@ public class MemoCliApp {
 	}
 	
 	private void selectDate() {
+		System.out.println("검색할 날짜를 입력하세요.");
 		String date = ScannerUtil.readDate();
-		Memo memo = memoList.selectDate(date);
-		System.out.println(memo);
+		ArrayList<Memo> memo = memoList.selectDate(date);
+		for (Memo m : memo) {
+			System.out.println(m);
+		}
 		
 	}
 	
 	private void selectContent() {
-		String content = ScannerUtil.readStr();
-		Memo memo = memoList.selectContent(content);
-		System.out.println(memo);
+		System.out.println("검색할 메모 일부를 입력하세요.");
+		String content = ScannerUtil.readMemo();
+		ArrayList<Memo> memo = memoList.selectContent(content);
+		for (Memo m : memo) {
+			System.out.println(m);
+		}
 	}
 	
 
 	private void selectAll() {
+		System.out.println("<목록>");
 		List<Memo> list = memoList.selectAll();
 		for (Memo f : list) {
 			System.out.println(f);
@@ -50,6 +58,7 @@ public class MemoCliApp {
 	}
 
 	private void delete() {
+		System.out.println("삭제할 메모 날짜를 입력하세요.");
 		String date = ScannerUtil.readDate();
 		memoList.delete(date);
 		
@@ -57,14 +66,19 @@ public class MemoCliApp {
 	
 	private void update() {
 		Memo memo = new Memo();
+		System.out.println("수정할 메모 날짜를 입력하세요.");
 		memo.setDate(ScannerUtil.readDate());
-		memo.setContent(ScannerUtil.readStr());
+		System.out.println("수정할 메모 내용을 입력하세요.");
+		memo.setContent(ScannerUtil.readMemo());
 		memoList.update(memo);
 	}
 
 	private void insert() {
-		Memo memo = ScannerUtil.readMemo();
-		memoList.insert(memo);
+		System.out.println("메모 날짜를 입력하세요.");
+		String date = ScannerUtil.readDate();
+		System.out.println("메모 내용을 입력하세요.");
+		String content = ScannerUtil.readMemo();
+		memoList.insert(new Memo(date, content));
 		
 	}
 	

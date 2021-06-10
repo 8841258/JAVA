@@ -12,15 +12,17 @@ public class Util {
 	public static int inputInt() {
 		int num=0;
 		
+		while (true) {
 		try {
 			String inputInt = sc.next();
 			
 			//숫자가 아니라 글자로 입력하면 오류가 뜰 것이다.
 			num = Integer.parseInt(inputInt);
+			break;
 		} catch (Exception e) {
-			System.out.println("숫자 형식으로 입력하세요.");
+			System.err.println("숫자 형식으로 입력하세요.");
 		}
-		
+		}
 		return num;	
 	}
 	
