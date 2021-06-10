@@ -1,11 +1,13 @@
 package co.memo.util;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-
 
 import co.memo.model.Memo;
 
@@ -75,16 +77,21 @@ public class ScannerUtil {
 	}
 	
 	public static Memo readMemo() {
+		String content=null;
 		System.out.print("날짜 >> ");
-		String date = scanner.next(); scanner.nextLine();
-		System.out.print("메모 >> ");
-		String content = scanner.nextLine();
+		String date = scanner.next();
+		System.out.println("메모사항을 입력하세요. >>");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			content = br.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Memo memo = new Memo(date, content);
 		return memo;
 		
 	}
 
-	
-	
 	
 }

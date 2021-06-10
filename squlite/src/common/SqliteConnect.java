@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.yedam.common.Person;
+
 public class SqliteConnect {
 	//필드
 	static PreparedStatement psmt;

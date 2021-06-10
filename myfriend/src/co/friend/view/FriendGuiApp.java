@@ -61,7 +61,10 @@ public class FriendGuiApp extends JFrame {
 		this.getContentPane().add(txtList);
 		
 		//삽입
-		btnInsert.addActionListener(e -> insert());
+		btnInsert.addActionListener( e -> 
+				insert()
+				
+			);
 		
 		//수정
 		btnUpdate.addActionListener(e -> update());
@@ -75,48 +78,48 @@ public class FriendGuiApp extends JFrame {
 		//이름조회
 		btnFindName.addActionListener(e -> findName());
 	}
-
-	class UpdateHandler implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			update();
-
-		}
-	}
-
-	class ClickHandler implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			insert();
-			txtName.setText("Click test");
-		}
-	}
-	
-	class selectAllHandler implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			selectAll();
-			txtList.setText("hello");
-		}
-	}
-	
-	class findNameHandler implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			findName();
-			
-		}
-	}
-	
-	class deleteHandler implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			delete();
-			
-				
-			}
-	}
-	
+//
+//	class UpdateHandler implements ActionListener {
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			update();
+//
+//		}
+//	}
+//
+//	class ClickHandler implements ActionListener {
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			insert();
+//			txtName.setText("Click test");
+//		}
+//	}
+//	
+//	class selectAllHandler implements ActionListener {
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			selectAll();
+//			txtList.setText("hello");
+//		}
+//	}
+//	
+//	class findNameHandler implements ActionListener {
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			findName();
+//			
+//		}
+//	}
+//	
+//	class deleteHandler implements ActionListener {
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			delete();
+//			
+//				
+//			}
+//	}
+//	
 	
 	
 	
