@@ -137,7 +137,7 @@ public class MemoDAO extends DAO implements MemoAccess{
 	public ArrayList<Memo> selectContent(String Content) {
 		ArrayList<Memo> memo = new ArrayList<>();
 		
-		sql = "select * from memo where content like %?%";
+		sql = "select * from memo where content like '%어제%'";
 		
 		try {
 			psmt = conn.prepareStatement(sql);

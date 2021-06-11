@@ -166,6 +166,8 @@ public class BoardDAO implements BoardAccess {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 
 		return false;
@@ -252,6 +254,8 @@ public class BoardDAO implements BoardAccess {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 
 	}
@@ -271,9 +275,10 @@ public class BoardDAO implements BoardAccess {
 			rs = psmt.executeQuery();
 			
 			if (rs.next() == false) {
-				System.err.println("없는 번호입니다.");
+				System.err.println("글이 없거나 댓글이 없습니다.");
 				System.out.println(); // 줄바꿈
 			}
+
 			else {
 			while (rs.next()) {
 				
@@ -284,51 +289,18 @@ public class BoardDAO implements BoardAccess {
 				b.setContent(rs.getString("b_content"));
 				array.add(b);
 			}
+			
+			for (Board b : array) {
+				System.out.println("글 번호 : " + b.getId() + " | 댓글 내용 : " + b.getContent());
+			}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		
-		for (Board b : array) {
-			System.out.println("글 번호 : " + b.getId() + " | 댓글 내용 : " + b.getContent());
-		}
-		
+	
 	}
-	
-	
-	//글이 삭제되면 코멘트도 같이 삭제되는 기능 넣으려다 실패
-//	public void deleteComment(int num) {
-//		
-//		sql = "select * from board where b_parent_id = ?";
-//		String sql2 = "delete from board where b_parent_id=?";
-//		
-//
-//		
-//		try {
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setInt(1, num);
-//			
-//			rs = psmt.executeQuery();
-//			
-//
-//				if (rs.next()) {
-//					PreparedStatement psmt2 = conn.prepareStatement(sql2);
-//					psmt2.setInt(1, num);
-//					int rr = psmt.executeUpdate();
-//					System.out.println("게시글에 달린 " + rr + "건의 댓글도 삭제 완료.");
-//				
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} finally {
-//			close();
-//		}
-//		
-//	}
-	
 	
 	
 	

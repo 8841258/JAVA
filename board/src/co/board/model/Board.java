@@ -5,6 +5,8 @@ public class Board {
 	private String title;
 	private String writer;
 	private String Content;
+	private String u_id;
+	private String u_pass;
 	
 	
 	
